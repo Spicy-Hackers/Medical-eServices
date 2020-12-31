@@ -1,24 +1,50 @@
 <template>
   <div class="main">
     <h1>{{ msg }}</h1>
-    <p>
-      Here we are in our App Component.
-    </p>
-    <h3>Ahmed</h3>
-    <h3>Zied</h3>
-    <h3>Melek</h3>
-    <h3>Khaled</h3>
-    
+    <Hospital />
+    <Doctor />
+    <Pharmacy />
   </div>
 </template>
 
 <script>
+import Hospital from "../components/Hospital";
+
 export default {
-  name: 'main',
+  name: "main",
+  components: {
+    Hospital,
+  },
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+};
+</script>
+<script>
+import Doctor from "../components/Doctor";
+
+export default {
+  name: "main",
+  components: {
+    Doctor,
+  },
+  props: {
+    msg: String,
+  },
+};
+</script>
+<script>
+import Pharmacy from "../components/Pharmacy";
+
+export default {
+  name: "main",
+  components: {
+    Pharmacy,
+  },
+  props: {
+    msg: String,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
