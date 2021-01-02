@@ -1,22 +1,22 @@
 <template>
   <div class="main">
-    <h1>{{ msg }}</h1>
-    <p>
-      Here we are in our App Component.
-    </p>
-    <h3>Ahmed</h3>
-    <h3>Zied</h3>
-    <h3>Melek</h3>
-    <h3>Khaled</h3>
-    
+    <UserPharmacy />
+    <!-- <login /> -->
+    <!-- <Home /> -->
   </div>
 </template>
 
 <script>
+import UserPharmacy from '../components/user/user-pharmacie'
+// import login from './login'
+// import Home from './Home'
+
 export default {
   name: 'main',
-  props: {
-    msg: String
+  components: {
+    UserPharmacy,
+    // login,
+    // Home
   }
 }
 </script>
