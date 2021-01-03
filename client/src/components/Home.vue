@@ -1,6 +1,6 @@
 <template>
     <div >
-        <div>
+        <!-- <div>
             <b-navbar toggleable="lg" type="dark" variant="info">
                 <b-navbar-brand href="#">Medical Services</b-navbar-brand>
 
@@ -8,25 +8,30 @@
 
                 <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
+                    <router-link to='/pharmacie'>Pharmacies</router-link>
+                    <router-link to='/hospital'>Hospitals</router-link>
+                    <router-link to='/doctor'>Doctors</router-link>
+                </b-navbar-nav>
+
+                <b-navbar-nav>
                     <b-nav-item href="#">Pharmacies</b-nav-item>
                     <b-nav-item href="#">Hospitals</b-nav-item>
                     <b-nav-item href="#">Doctos</b-nav-item>
-                    <b-nav-item href="#" disabled>Disabled</b-nav-item>
                 </b-navbar-nav>
 
-                <!-- Right aligned nav items -->
+                Right aligned nav items
                 <b-navbar-nav class="ml-auto">
 
-                    <b-nav-item-dropdown right>
-                    <!-- Using 'button-content' slot -->
+                    <b-nav-item right>
+                    Using 'button-content' slot
                     <template #button-content>
                         <em>Login</em>
                     </template>
-                    </b-nav-item-dropdown>
+                    </b-nav-item>
                 </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
-        </div>
+        </div> -->
         
         <b-container class="bv-example-row">
             <b-row class="justify-content-md-center">
@@ -92,7 +97,7 @@
                 </b-col>
             </b-row>
         </b-container>
-        
+        <router-view/>
     </div>
     
 </template>

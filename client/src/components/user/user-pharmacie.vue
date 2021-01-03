@@ -1,28 +1,36 @@
 <template>
     <div >
-        <div>
+        <!-- <div>
         <b-navbar toggleable="lg" type="dark" variant="info">
             <b-navbar-brand href="#">Medical Services</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
+
             <b-navbar-nav>
+                <router-link to='/pharmacie'>Pharmacies</router-link>
+                <router-link to='/hospital'>Hospitals</router-link>
+                <router-link to='/doctor'>Doctors</router-link>
+            </b-navbar-nav> -->
+            
+
+            <!-- <b-navbar-nav>
                 <b-nav-item href="#">Pharmacies</b-nav-item>
                 <b-nav-item href="#">Hospitals</b-nav-item>
                 <b-nav-item href="#">Doctors</b-nav-item>
-            </b-navbar-nav>
+            </b-navbar-nav> -->
 
             <!-- Right aligned nav items -->
-            <b-navbar-nav class="ml-auto">
+            <!-- <b-navbar-nav class="ml-auto">
                 <b-nav-form>
                 <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
                 <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
                 </b-nav-form>
 
-                <b-nav-item-dropdown right>
+                <b-nav-item-dropdown right> -->
                 <!-- Using 'button-content' slot -->
-                <template #button-content>
+                <!-- <template #button-content>
                     <em>User</em>
                 </template>
                 <b-dropdown-item href="#">Sign Out</b-dropdown-item>
@@ -30,7 +38,8 @@
             </b-navbar-nav>
             </b-collapse>
         </b-navbar>
-        </div>
+        
+        </div> -->
         <b-dropdown id="dropdown-1" text="Location" class="m-md-2">
             <b-dropdown-item>Tunis</b-dropdown-item>
             <b-dropdown-item>Ariana</b-dropdown-item>
@@ -83,7 +92,7 @@
                 </b-col>
             </b-row>
         </b-container>
-        
+        <router-view/>
     </div>
     
 </template>
