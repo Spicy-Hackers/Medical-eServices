@@ -1,295 +1,211 @@
 <template>
-    <div id="app">
-    <article>
-        <div class="container" :class="{'sign-up-active' : signUp}">
-        <div class="overlay-container">
-            <div class="overlay">
-            <div class="overlay-left">
-                <h2>Welcome Back!</h2>
-                <p>Please login with your personal info</p>
-                <button class="invert" id="signIn" @click="signUp = !signUp">Sign In</button>
-            </div>
-            <div class="overlay-right">
-                <h2>Hello, Friend!</h2>
-                <p>Please enter your personal details</p>
-                <button class="invert" id="signUp" @click="signUp = !signUp">Sign Up</button>
-            </div>
-            </div>
-        </div>
-        <form class="sign-up" action="#">
-            <h2>Create login</h2>
-            <div>Use your email for registration</div>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Sign Up</button>
-        </form>
-        <form class="sign-in" action="#">
-            <h2>Sign In</h2>
-            <div>Use your account</div>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
-        </form>
-        </div>
-    </article>
-    
-    <!-- Youtube Link -->
-    <a id="yt_link" target="_blank" href="https://www.youtube.com/watch?v=uotY_cx1dvo&list=PLINmvGGUwYc2FVxImTwT66Phi4hQ2embf">Watch on YouTube</a>
-    </div>
+  <v-app>
+    <v-main>
+      <div v-if="this.logged == false">
+        <v-container class="fill-height" fluid>
+          <v-row align="center" justify="center">
+            <v-col cols="12" sm="8" md="8">
+              <v-card class="elevation-12">
+                <v-window v-model="step">
+                  <v-window-item :value="1">
+                    <v-row>
+                      <v-col cols="12" md="8">
+                        <v-card-text class="mt12">
+                          <h1
+                            class="text-center display-2 teal--text text--accent-3"
+                          >
+                            Sign in to Medical e-Services
+                          </h1>
+                          <br />
+                          <h4 class="text-center mlt-4">
+                            Ensure your email for registration
+                          </h4>
+                          <v-form>
+                            <v-text-field
+                              label="Email"
+                              name="Email"
+                              prepend-icon="email"
+                              type="text"
+                              color="teal accent-3"
+                              v-model="input.username"
+                            />
+                            <v-text-field
+                              id="password"
+                              label="Password"
+                              name="Password"
+                              prepend-icon="lock"
+                              type="password"
+                              color="teal accent-3"
+                              v-model="input.password"
+                            />
+                          </v-form>
+                          <h3 class="text-center mt-3">
+                            Forget your password ?
+                          </h3>
+                        </v-card-text>
+                        <div class="text-center mt-3">
+                          <v-btn
+                            rounded
+                            color="teal accent-3"
+                            dark
+                            v-on:click="login()"
+                          >
+                            SIGN IN</v-btn
+                          >
+                        </div>
+                      </v-col>
+                      <v-col cols="12" md="4" class="teal accent-3">
+                        <v-card-text class="white-text mt-12">
+                          <h1 class="text-center display-1">
+                            Welcome to our Medical e-Services
+                          </h1>
+                          <br />
+                          <h4 class="text-center">
+                            Enter your personnel details and start journay with
+                            us
+                          </h4>
+                        </v-card-text>
+                        <div class="text-center">
+                          <v-btn rounded outlined="" dark @click="step++"
+                            >SIGN UP
+                          </v-btn>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-window-item>
+                  <v-window-item :value="2">
+                    <v-row class="fill-height">
+                      <v-col cols="12" md="4" class="teal accent-3">
+                        <v-card-text class="white--text mt-12">
+                          <h1 class="white-text mt-12">Welcome Back !</h1>
+                          <br /><br />
+                          <h5 class="white-text">
+                            To keep connected with us please login with your
+                            personnel information
+                          </h5>
+                        </v-card-text>
+                        <div class="text-center">
+                          <v-btn rounded outlined dark @click="step--"
+                            >SIGN IN</v-btn
+                          >
+                        </div>
+                      </v-col>
+                      <v-col cols="12" md="8">
+                        <v-card-text class="mt-12">
+                          <h1
+                            class="text-center display-2 teal--text text--accent-3"
+                          >
+                            Create Account
+                          </h1>
+                          <br />
+                          <h4 class="text-center mlt-4">
+                            Ensure your email for registration
+                          </h4>
+                          <v-text-field
+                            label="Name"
+                            name="Name"
+                            prepend-icon="person"
+                            type="text"
+                            color="teal accent-3"
+                            v-model="signup.username"
+                          />
+                          <v-text-field
+                            label="Email"
+                            name="Email"
+                            prepend-icon="email"
+                            type="text"
+                            color="teal accent-3"
+                            v-model="signup.email"
+                          />
+                          <v-text-field
+                            id="password"
+                            label="Password"
+                            name="Password"
+                            prepend-icon="lock"
+                            type="password"
+                            color="teal accent-3"
+                            v-model="signup.password"
+                          />
+                        </v-card-text>
+                        <div class="text-center mt-n5">
+                          <v-btn
+                            rounded
+                            color="teal accent-3"
+                            dark
+                            v-on:click="signUp()"
+                            >SIGN UP</v-btn
+                          >
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-window-item>
+                </v-window>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
+      <div v-else><Main /></div>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
+import axios from "axios";
+// import Main from "./Main";
 export default {
-    name: 'login',
-    el: '#app',
-    data: () => {
-    return {
-      signUp: false
-    }
-  }   
-}
+  data: () => ({
+    step: 1,
+    input: {
+      username: "",
+      password: "",
+    },
+    signup: {
+      username: "",
+      password: "",
+      email: "",
+    },
+    logged: false,
+    usernamelogin: false,
+  }),
+  components: {
+    // Main,
+    // Footer,
+    // Login,
+  },
+  methods: {
+    login() {
+      axios.get("http://localhost:3000/api/users/").then((response) => {
+        for (let i = 0; i < response.data.length; i++) {
+          if (this.input.username == response.data[i].email) {
+            this.usernamelogin = true;
+            if (this.input.password == response.data[i].password) {
+              this.logged = true;
+              break;
+            } else {
+              alert("Wrong Password");
+            }
+          }
+        }
+        if (!this.usernamelogin) {
+          alert("Wrong E-mail");
+        }
+      });
+    },
+    signUp() {
+      axios
+        .post("http://localhost:3000/api/users/createUser", this.signup)
+        .then((response) => console.log(response));
+    },
+  },
+  props: {
+    source: String,
+  },
+};
 </script>
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-#app {
-  font-family: Tahoma;
-  font-size: 1rem;
-  color: #222;
-  background-color: #092525;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  position: relative;
-  width: 768px;
-  height: 480px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, .2),
-    0 10px 10px rgba(0, 0, 0, .2);
-  background: linear-gradient(to bottom, #efefef, #ccc);
-
-    .overlay-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform .5s ease-in-out;
-    z-index: 100;
-  }
-
-  .overlay {
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    background: linear-gradient(to bottom right, #7FD625, #009345);
-    color: #fff;
-    transform: translateX(0);
-    transition: transform .5s ease-in-out;
-  }
-
-  @mixin overlays($property) {
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    padding: 70px 40px;
-    width: calc(50% - 80px);
-    height: calc(100% - 140px);
-    text-align: center;
-    transform: translateX($property);
-    transition: transform .5s ease-in-out;
-  }
-
-  .overlay-left {
-    @include overlays(-20%);
-  }
-
-  .overlay-right {
-    @include overlays(0);
-    right: 0;
-  }
-}
-
-h2 {
-  margin: 0;
-}
-
-p {
-  margin: 20px 0 30px;
-}
-
-a {
-  color: #222;
-  text-decoration: none;
-  margin: 15px 0;
-  font-size: 1rem;
-}
-
-button {
-  border-radius: 20px;
-  border: 1px solid #009345;
-  background-color: #009345;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 40px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform .1s ease-in;
-
-  &:active {
-    transform: scale(.9);
-  }
-
-  &:focus {
-    outline: none;
-  }
-}
-
-button.invert {
-  background-color: transparent;
-  border-color: #fff;
-}
-
-form {
-  position: absolute;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-  padding: 90px 60px;
-  width: calc(50% - 120px);
-  height: calc(100% - 180px);
-  text-align: center;
-  background: linear-gradient(to bottom, #efefef, #ccc);
-  transition: all .5s ease-in-out;
-
-  div {
-    font-size: 1rem;
-  }
-
-  input {
-    background-color: #eee;
-    border: none;
-    padding: 8px 15px;
-    margin: 6px 0;
-    width: calc(100% - 30px);
-    border-radius: 15px;
-    border-bottom: 1px solid #ddd;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .4), 
-      0 -1px 1px #fff, 
-      0 1px 0 #fff;
-    overflow: hidden;
-
-    &:focus {
-      outline: none;
-      background-color: #fff;
-    }
-  }
-}
-
-.sign-in {
-  left: 0;
-  z-index: 2;
-}
-
-.sign-up {
-  left: 0;
-  z-index: 1;
-  opacity: 0;
-}
-
-.sign-up-active {
-  .sign-in {
-    transform: translateX(100%);
-  }
-
-  .sign-up {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: show .5s;
-  }
-
-  .overlay-container {
-    transform: translateX(-100%);
-  }
-
-  .overlay {
-    transform: translateX(50%);
-  }
-
-  .overlay-left {
-    transform: translateX(0);
-  }
-
-  .overlay-right {
-    transform: translateX(20%);
-  }
-}
-
-@keyframes show {
-  0% {
-    opacity: 0;
-    z-index: 1;
-  }
-  49% {
-    opacity: 0;
-    z-index: 1;
-  }
-  50% {
-    opacity: 1;
-    z-index: 10;
-  }
-}
-
-
-/* Youtube Link */
-#yt_link
-{
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: -200px;
-  display: block;
-  width: 160px;
-  text-align: center;
-  color: red;
-  font-size: 15px;
-  text-decoration: none;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  padding: 10px;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 2px;
-  animation: showYtLink 1.5s ease 3s forwards;
-}
-
-@keyframes showYtLink
-{
-  0%{ bottom: -200px; }
-  100%{ bottom: 20px; }
+<style scoped>
+.col-sm-8.col-md-8.col-12 {
+  margin-top: 120px;
 }
 </style>

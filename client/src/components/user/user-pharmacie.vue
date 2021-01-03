@@ -51,9 +51,9 @@
             <b-row class="justify-content-md-center">
                 <b-col cols="12" md="auto">
                     <h4>Here is the Pharmacie Component</h4>
-                    <img v-bind:src="img">
                     <div class="mt-4">
-                        <b-card v-bind:img-src="img" img-alt="Card image" img-left class="mb-3">
+                        <!-- <img :src="require('../.././assets/clinic.png')"> -->
+                        <b-card v-bind:img-src="require('../.././assets/clinic.png')" img-alt="Card image" img-left class="mb-3">
                             <b-card-text>
                                 <b>Pharmacy : </b>Ben Arous Pharmacy
                             </b-card-text>
@@ -71,7 +71,7 @@
                             </b-card-text>
                         </b-card>
 
-                        <b-card img-src="https://picsum.photos/300" img-alt="Card image" img-right>
+                        <b-card v-bind:img-src="require('../.././assets/clinic.png')" img-alt="Card image" img-right>
                             <b-card-text>
                                 <b>Pharmacy : </b>Ben Arous Pharmacy
                             </b-card-text>
@@ -103,7 +103,7 @@ export default {
     name: 'UserPharmacy',
     data () {
         return {
-            img: 'assets/clinic.png'
+            img: '../.././assets/clinic.png'
         }
     },
     components: {

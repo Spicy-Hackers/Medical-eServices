@@ -8,7 +8,7 @@
 
             <b-collapse id="nav-collapse" is-nav>
 
-            <b-navbar-nav>
+            <b-navbar-nav id="navLink">
                 <router-link to='/'>Home</router-link>
                 <router-link to='/pharmacie'>Pharmacies</router-link>
                 <router-link to='/hospital'>Hospitals</router-link>
@@ -31,6 +31,7 @@
 
                 <b-nav-item-dropdown right>
                 <!-- Using 'button-content' slot -->
+                <router-link to='/login'>Login</router-link>
                 <template #button-content>
                     <em>User</em>
                 </template>
@@ -65,7 +66,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
+/* h3 {
   margin: 40px 0 0;
 }
 ul {
@@ -78,5 +79,10 @@ li {
 }
 a {
   color: #42b983;
+} */
+#navLink a {
+  padding: 0 10px;
+  color: white;
+  /* font-weight: bold; */
 }
 </style>
