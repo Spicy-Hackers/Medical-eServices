@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div v-if="fetched">
         <!-- <div>
         <b-navbar toggleable="lg" type="dark" variant="info">
             <b-navbar-brand href="#">Medical Services</b-navbar-brand>
@@ -40,38 +40,38 @@
         </b-navbar>
         
         </div> -->
+        
         <b-dropdown id="dropdown-1" text="Location" class="m-md-2">
-            <b-dropdown-item>Tunis</b-dropdown-item>
-            <b-dropdown-item>Ariana</b-dropdown-item>
-            <b-dropdown-item>Ben Arous</b-dropdown-item>
-            <b-dropdown-item>Manouba</b-dropdown-item>
+            <b-dropdown-item @click="test" value="tunis">tunis</b-dropdown-item>
+            <b-dropdown-item @click="test" value="ariana">ariana</b-dropdown-item>
+            <b-dropdown-item @click="test" value="ben arous">ben arous</b-dropdown-item>
+            <b-dropdown-item @click="test" value="manouba">manouba</b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
         </b-dropdown>
         <b-container class="bv-example-row">
             <b-row class="justify-content-md-center">
                 <b-col cols="12" md="auto">
-                    <h4>Here is the Pharmacie Component</h4>
-                    <div class="mt-4">
-                        <!-- <img :src="require('../.././assets/clinic.png')"> -->
+                    <!-- <h4>Here is the Pharmacie Component</h4> -->
+                    <div v-for="pharmacie in pharmacies" :key="pharmacie._id" class="mt-4">
                         <b-card v-bind:img-src="require('../.././assets/clinic.png')" img-alt="Card image" img-left class="mb-3">
                             <b-card-text>
-                                <b>Pharmacy : </b>Ben Arous Pharmacy
+                                <b>Pharmacy : </b>{{pharmacie.pharmacy}}
                             </b-card-text>
                             <b-card-text>
-                                <b>Phone Number : </b>71309897
+                                <b>Phone Number : </b>{{pharmacie.phoneNumber}}
                             </b-card-text>
                             <b-card-text>
-                                <b>email : </b>ben-arous@gmail.com
+                                <b>email : </b>{{pharmacie.email}}
                             </b-card-text>
                             <b-card-text>
-                                <b>Adress : </b>Ben Arous
+                                <b>Adress : </b>{{pharmacie.adress}}
                             </b-card-text>
                             <b-card-text>
-                                <b>Disponibility : </b>12h/24 from monday to saturday
+                                <b>Disponibility : </b>{{pharmacie.disponibility}}
                             </b-card-text>
                         </b-card>
 
-                        <b-card v-bind:img-src="require('../.././assets/clinic.png')" img-alt="Card image" img-right>
+                        <!-- <b-card v-bind:img-src="require('../.././assets/clinic.png')" img-alt="Card image" img-right>
                             <b-card-text>
                                 <b>Pharmacy : </b>Ben Arous Pharmacy
                             </b-card-text>
@@ -87,7 +87,7 @@
                             <b-card-text>
                                 <b>Disponibility : </b>12h/24 from monday to saturday
                             </b-card-text>
-                        </b-card>
+                        </b-card> -->
                     </div>
                 </b-col>
             </b-row>
@@ -98,17 +98,38 @@
 </template>
 
 <script>
+import axios from "axios"
 
 export default {
     name: 'UserPharmacy',
     data () {
         return {
-            img: '../.././assets/clinic.png'
+            pharmacies: null,
+            index: 0,
+            fetched:false
         }
     },
-    components: {
-
-    }   
+    methods: {
+        async test(e){
+            this.$vs.loading({type:'radius'})
+            this.fetched=false
+            var pharmacies = await axios.post('http://localhost:3000/api/pharmacy/findPharmacy',{adress:e.target.innerText})
+            this.pharmacies = pharmacies.data
+            setTimeout(()=>{
+                this.fetched=true
+                this.$vs.loading.close()
+            },1000)
+        }
+    },
+    async mounted() {
+        this.$vs.loading({type:'radius'})
+        var pharmacies = await axios.get('http://localhost:3000/api/pharmacy')
+            this.pharmacies = pharmacies.data
+        setTimeout(()=>{
+            this.fetched=true
+    this.$vs.loading.close()
+        },2500)
+    }
 }
 </script>
 

@@ -11,15 +11,13 @@
                     <v-row>
                       <v-col cols="12" md="8">
                         <v-card-text class="mt12">
-                          <h1
-                            class="text-center display-2 teal--text text--accent-3"
-                          >
+                          <h1 class="text-center display-1 teal--text text--accent-3">
                             Sign in to Medical e-Services
                           </h1>
                           <br />
-                          <h4 class="text-center mlt-4">
+                          <h6 class="text-center mlt-4">
                             Ensure your email for registration
-                          </h4>
+                          </h6>
                           <v-form>
                             <v-text-field
                               label="Email"
@@ -39,9 +37,9 @@
                               v-model="input.password"
                             />
                           </v-form>
-                          <h3 class="text-center mt-3">
+                          <!-- <h3 class="text-center mt-3">
                             Forget your password ?
-                          </h3>
+                          </h3> -->
                         </v-card-text>
                         <div class="text-center mt-3">
                           <v-btn
@@ -56,14 +54,14 @@
                       </v-col>
                       <v-col cols="12" md="4" class="teal accent-3">
                         <v-card-text class="white-text mt-12">
-                          <h1 class="text-center display-1">
+                          <h4 class="text-center ">
                             Welcome to our Medical e-Services
-                          </h1>
+                          </h4>
                           <br />
-                          <h4 class="text-center">
+                          <h5 class="text-center">
                             Enter your personnel details and start journay with
                             us
-                          </h4>
+                          </h5>
                         </v-card-text>
                         <div class="text-center">
                           <v-btn rounded outlined="" dark @click="step++"
@@ -77,30 +75,28 @@
                     <v-row class="fill-height">
                       <v-col cols="12" md="4" class="teal accent-3">
                         <v-card-text class="white--text mt-12">
-                          <h1 class="white-text mt-12">Welcome Back !</h1>
+                          <h4 class="white-text mt-12">Welcome Back</h4>
                           <br /><br />
-                          <h5 class="white-text">
+                          <h6 class="white-text">
                             To keep connected with us please login with your
                             personnel information
-                          </h5>
+                          </h6>
                         </v-card-text>
                         <div class="text-center">
-                          <v-btn rounded outlined dark @click="step--"
-                            >SIGN IN</v-btn
-                          >
+                          <v-btn rounded outlined dark @click="step--">
+                            SIGN IN
+                          </v-btn>
                         </div>
                       </v-col>
                       <v-col cols="12" md="8">
                         <v-card-text class="mt-12">
-                          <h1
-                            class="text-center display-2 teal--text text--accent-3"
-                          >
+                          <h1 class="text-center display-1 teal--text text--accent-3">                        
                             Create Account
                           </h1>
                           <br />
-                          <h4 class="text-center mlt-4">
+                          <h6 class="text-center mlt-4">
                             Ensure your email for registration
-                          </h4>
+                          </h6>
                           <v-text-field
                             label="Name"
                             name="Name"
@@ -133,8 +129,7 @@
                             color="teal accent-3"
                             dark
                             v-on:click="signUp()"
-                            >SIGN UP</v-btn
-                          >
+                            >SIGN UP</v-btn>
                         </div>
                       </v-col>
                     </v-row>
@@ -145,14 +140,14 @@
           </v-row>
         </v-container>
       </div>
-      <div v-else><Main /></div>
+      <div v-else><Home /></div>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import axios from "axios";
-// import Main from "./Main";
+import Home from "./Home";
 export default {
   data: () => ({
     step: 1,
@@ -169,7 +164,7 @@ export default {
     usernamelogin: false,
   }),
   components: {
-    // Main,
+    Home,
     // Footer,
     // Login,
   },
@@ -195,7 +190,7 @@ export default {
     signUp() {
       axios
         .post("http://localhost:3000/api/users/createUser", this.signup)
-        .then((response) => console.log(response));
+        .then((response) => console.log(response))
     },
   },
   props: {
@@ -206,6 +201,6 @@ export default {
 
 <style scoped>
 .col-sm-8.col-md-8.col-12 {
-  margin-top: 120px;
+  margin-top: 150px;
 }
 </style>

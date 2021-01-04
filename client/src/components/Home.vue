@@ -36,7 +36,7 @@
         <b-container class="bv-example-row">
             <b-row class="justify-content-md-center">
                 <b-col cols="12">
-                    <h4>Here is the Home Component</h4>
+                    <!-- <h4>Welcome to our Medical Services</h4> -->
                     <div class="mt-4">
                         <b-carousel
                         id="carousel-1"
@@ -52,23 +52,25 @@
                         @sliding-end="onSlideEnd"
                         >
                         <!-- Text slides with image -->
-                        <b-carousel-slide
-                            caption="First slide"
-                            text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-                            img-src="https://picsum.photos/1024/480/?image=52"
-                        ></b-carousel-slide>
+                            <!-- caption="First slide"
+                            text="Nulla vitae elit libero, a pharetra augue mollis interdum." -->
+                        <b-carousel-slide v-bind:img-src="require('.././assets/pharmacie.png')">
+                            <h1>Pharmacies</h1>
+                        </b-carousel-slide>
 
                         <!-- Slides with custom text -->
-                        <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-                            <h1>Hello world!</h1>
+                        <b-carousel-slide v-bind:img-src="require('.././assets/hospital.png')">
+                            <h1>Hospitals</h1>
                         </b-carousel-slide>
 
                         <!-- Slides with image only -->
-                        <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
+                        <b-carousel-slide v-bind:img-src="require('.././assets/doctor.png')">
+                            <h1>Doctors</h1>
+                        </b-carousel-slide>
 
                         <!-- Slides with img slot -->
                         <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-                        <b-carousel-slide>
+                        <!-- <b-carousel-slide>
                             <template #img>
                             <img
                                 class="d-block img-fluid w-100"
@@ -78,7 +80,7 @@
                                 alt="image slot"
                             >
                             </template>
-                        </b-carousel-slide>
+                        </b-carousel-slide> -->
 
                         <!-- Slide with blank fluid image to maintain slide aspect ratio -->
                         <!-- <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
